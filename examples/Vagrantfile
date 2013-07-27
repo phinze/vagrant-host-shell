@@ -1,0 +1,13 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'vagrant-host-shell'
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "precise64"
+
+  config.vm.provision :host_shell do |host_shell|
+    host_shell.inline = 'touch /tmp/hostshell-works'
+  end
+end
