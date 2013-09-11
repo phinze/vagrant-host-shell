@@ -4,8 +4,11 @@ module VagrantPlugins::HostShell
       Vagrant::Util::Subprocess.execute(
         '/bin/bash',
         '-c',
-        config.inline
-      )
+        config.inline,
+        :notify => [:stdout, :stderr]
+      ) do |io_name, data|
+        @machine.env.ui.info "[#{io_name}] #{data}"
+      end
     end
   end
 end

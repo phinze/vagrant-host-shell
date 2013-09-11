@@ -8,6 +8,6 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
 
   config.vm.provision :host_shell do |host_shell|
-    host_shell.inline = 'touch /tmp/hostshell-works'
+    host_shell.inline = 'touch /tmp/hostshell-works && echo hello from the host && hostname 1>&2'
   end
 end

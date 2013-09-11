@@ -16,10 +16,15 @@ Add this to `Vagrantfile`:
 
 ```ruby
   config.vm.provision :host_shell do |host_shell|
-    host_shell.inline = 'touch /tmp/hostshell-works'
+    host_shell.inline = 'touch /tmp/hostshell-works && echo hello from the host && hostname 1>&2'
   end
 ```
 
 Run `vagrant up` (or `vagrant provision` if machine is already running.)
 
-Observe that `/tmp/hostshell-works` is present on your host.
+Observe that `/tmp/hostshell-works` is present on your host, and that the provisioner output:
+
+```
+[stdout] hello from the host
+[stderr] (your host's hostname)
+```
