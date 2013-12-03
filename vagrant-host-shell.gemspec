@@ -7,8 +7,8 @@ require 'vagrant-host-shell/version'
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-host-shell"
   spec.version       = VagrantPlugins::HostShell::VERSION
-  spec.authors       = ["Paul Hinze"]
-  spec.email         = ["paul.t.hinze@gmail.com"]
+  spec.authors       = ["Paul Hinze", "Carlos Brito Lage"]
+  spec.email         = ["paul.t.hinze@gmail.com", "carlos@compstak.com"]
   spec.description   = %q{a vagrant provisioner to run commands on the host}
   spec.summary       = %q{a vagrant provisioner to run commands on the host}
   spec.homepage      = ""
