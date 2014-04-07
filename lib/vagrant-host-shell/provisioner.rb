@@ -2,7 +2,7 @@ module VagrantPlugins::HostShell
   class Provisioner < Vagrant.plugin('2', :provisioner)
     def provision
       result = Vagrant::Util::Subprocess.execute(
-        '/bin/bash',
+        'bash',
         '-c',
         config.inline,
         :notify => [:stdout, :stderr],
