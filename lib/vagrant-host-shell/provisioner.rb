@@ -6,7 +6,8 @@ module VagrantPlugins::HostShell
         '-c',
         config.inline,
         :notify => [:stdout, :stderr],
-        :workdir => config.cwd
+        :workdir => config.cwd,
+        :env => {PATH: ENV["VAGRANT_OLD_ENV_PATH"]},
       ) do |io_name, data|
         @machine.env.ui.info "[#{io_name}] #{data}"
       end
