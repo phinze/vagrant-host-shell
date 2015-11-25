@@ -9,11 +9,19 @@ module VagrantPlugins::HostShell
         :workdir => config.cwd,
         :env => {PATH: ENV["VAGRANT_OLD_ENV_PATH"]},
       ) do |io_name, data|
-        @machine.env.ui.info "[#{io_name}] #{data}"
+        options = {
+          new_line: false,
+          prefix: false,
+        }
+
+        color = io_name == :stdout ? :green : :red
+        options[:color] = color # if !config.keep_color
+
+        @machine.env.ui.info(data, options)
       end
 
-      if config.abort_on_nonzero && !result.exit_code.zero?      
-        raise VagrantPlugins::HostShell::Errors::NonZeroStatusError.new(config.inline, result.exit_code)  
+      if config.abort_on_nonzero && !result.exit_code.zero?
+        raise VagrantPlugins::HostShell::Errors::NonZeroStatusError.new(config.inline, result.exit_code)
       end
 
     end
